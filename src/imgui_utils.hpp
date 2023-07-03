@@ -1,0 +1,21 @@
+#pragma once
+#include <gpt.hpp>
+#include <imgui.h>
+
+
+struct Texture
+{
+    ImTextureID id;
+    int width;
+    int height;
+};
+
+class ImGuiUtils
+{
+public:
+    static Texture LoadTexture(const char* file, bool nearestFilter = false);
+    static void UnloadTexture(const Texture& texture);
+
+    static void DrawTextureEx(ImDrawList& dl, const Texture& tex, ImVec2 pos, ImVec2 scale = { 1.f, 1.f }, float angle = 0.f);
+	static ImVec2 toImVec2(GPT::Math::Vector2 other);
+};

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d0dab916-f416-4d00-9162-9c88687021f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="externals">
+      <UniqueIdentifier>{adcf2b31-4982-46f4-b41b-28e85e73017e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets">
+      <UniqueIdentifier>{b8762939-6a22-4333-8733-1c12ff9c623b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{852e34fb-2182-4713-994b-829545ecd9f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities">
+      <UniqueIdentifier>{05e6e3b6-f7fa-4adb-b99d-4e262e1ddeb4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\app.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui_utils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="externals\src\imgui.cpp" />
+    <ClCompile Include="externals\src\imgui_demo.cpp" />
+    <ClCompile Include="externals\src\imgui_draw.cpp" />
+    <ClCompile Include="externals\src\imgui_impl_glfw.cpp" />
+    <ClCompile Include="externals\src\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="externals\src\imgui_tables.cpp" />
+    <ClCompile Include="externals\src\imgui_widgets.cpp" />
+    <ClCompile Include="externals\src\stb_image.cpp" />
+    <ClCompile Include="src\resources.cpp" />
+    <ClCompile Include="src\entities\player.cpp" />
+    <ClCompile Include="externals\src\gpt.cpp" />
+    <ClCompile Include="src\entities\bullet.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\app.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\calc.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui_utils.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="externals\include\imconfig.h" />
+    <ClInclude Include="externals\include\imgui.h" />
+    <ClInclude Include="externals\include\imgui_impl_glfw.h" />
+    <ClInclude Include="externals\include\imgui_impl_opengl3.h" />
+    <ClInclude Include="externals\include\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="externals\include\imgui_internal.h" />
+    <ClInclude Include="externals\include\imstb_rectpack.h" />
+    <ClInclude Include="externals\include\imstb_textedit.h" />
+    <ClInclude Include="externals\include\imstb_truetype.h" />
+    <ClInclude Include="externals\include\stb_image.h" />
+    <ClInclude Include="externals\include\GLFW\glfw3.h" />
+    <ClInclude Include="externals\include\GLFW\glfw3native.h" />
+    <ClInclude Include="src\entities\player.h" />
+    <ClInclude Include="src\resources.h" />
+    <ClInclude Include="src\entities\bullet.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="externals\libs\x86_64-w64-vc2022\glfw3.lib" />
+  </ItemGroup>
+</Project>
