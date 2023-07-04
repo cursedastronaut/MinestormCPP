@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
         return 1;
     
     glfwMakeContextCurrent(window);
-    glfwSwapInterval(1); // Enable vsync
+    glfwSwapInterval(0); // Enable vsync
     glfwSetWindowAttrib(window, GLFW_RESIZABLE, GLFW_FALSE);
     //glfwSetCursor()
 

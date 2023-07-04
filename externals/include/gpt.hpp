@@ -152,6 +152,7 @@ public:
 	{
 		public:
 		#define PI 3.1415926535
+		#define PI_F 3.1415926535f
 		#include <cstdlib>
 		static int rand(int min, int max)					;
 		static uint32_t	rand(uint32_t min,	uint32_t max)	;
@@ -315,6 +316,7 @@ public:
 			uint8_t verticalDimension = 1;
 			
 			Physics() {};
+			Physics GetPhysics();
 			void Initialisation(uint8_t dimensions, bool shouldBeAffectedByGravity, float gravity);
 
 

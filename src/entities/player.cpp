@@ -29,9 +29,9 @@ GPT::Math::Vector Player::Update(ImGuiIO* io)
 		pos[i] += momentum[i] * io->DeltaTime;
 
 	if (ImGui::IsKeyDown(ImGuiKey::ImGuiKey_Q))
-		angle[0] -= (480.0f * PI / 360.0f) * io->DeltaTime;
+		angle[0] -= (480.0f * PI_F / 360.0f) * io->DeltaTime;
 	if (ImGui::IsKeyDown(ImGuiKey::ImGuiKey_D))
-		angle[0] += (480.0f * PI / 360.0f) * io->DeltaTime;
+		angle[0] += (480.0f * PI_F / 360.0f) * io->DeltaTime;
 
 	if (ImGui::IsKeyDown(ImGuiKey::ImGuiKey_Z))
 	{
@@ -41,19 +41,23 @@ GPT::Math::Vector Player::Update(ImGuiIO* io)
 
 	GPT::Math::Vector output;
 	output.set_dimension(6);
-	if (ImGui::IsKeyDown(ImGuiKey::ImGuiKey_E))
+	if (bulletCooldown > 0.0f)
+		bulletCooldown -= io->DeltaTime;
+	
+	if (ImGui::IsKeyDown(ImGuiKey::ImGuiKey_E) && bulletCooldown <= 0.0f)
 	{
 		output[0] = pos[0];
 		output[1] = pos[1];
 		output[2] = angle[0];
 		output[3] = 1.0f;
-		output[4] = (cos(angle[0] - PI / 2.f)) * 800;
-		output[5] = (sin(angle[0] - PI / 2.f)) * 800;
+		output[4] = (cos(angle[0] - PI_F / 2.f)) * 800;
+		output[5] = (sin(angle[0] - PI_F / 2.f)) * 800;
+		bulletCooldown = bulletCooldownDef;
 	}
 	
 	//Frictions
-	momentum[0] *= 0.98;
-	momentum[1] *= 0.98;
+	momentum[0] *= 0.996f;
+	momentum[1] *= 0.996f;
 
 	Borders();
 	return output;
@@ -74,4 +78,27 @@ void Player::Borders()
 		pos[0] = -200;
 	if (pos[1] > 920)
 		pos[1] = -200;
+}
+
+GPT::phy::Physics* Player::GetPhysicsP()
+{
+	GPT::phy::Physics output;
+	output.pos = pos;
+	output.angle = angle;
+	output.gravityAcceleration = gravityAcceleration;
+	output.isAffectedByGravity = isAffectedByGravity;
+	output.verticalDimension = verticalDimension;
+	output.momentum = momentum;
+	output.size = size;
+	return &output;
+}
+
+GPT::Math::Vector	Player::GetPos()
+{
+	return pos;
+}
+
+GPT::Math::Vector	Player::GetSize()
+{
+	return size;
 }

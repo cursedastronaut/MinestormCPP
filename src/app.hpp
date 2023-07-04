@@ -15,4 +15,5 @@ public:
 	std::vector <Bullet> bullets;
 	Resources res;
     void Update();
+	bool CheckCollisions(GPT::Math::Vector a, GPT::Math::Vector b, float aAngle, float bAngle, GPT::Math::Vector aSize, GPT::Math::Vector bSize);
 };

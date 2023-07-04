@@ -612,28 +612,28 @@ GPT::Math::Matrix GPT::Math::Matrix::set_rotation_2D(double rotation)
 {
 	Matrix result(2, 2);
 
-	result[0][0] = cosf(rotation / (360 / (2 * PI)));
-	result[0][1] = -sinf(rotation / (360 / (2 * PI)));
+	result[0][0] = cosf(rotation / (360.f / (2.f * PI_F)));
+	result[0][1] = -sinf(rotation / (360.f / (2.f * PI_F)));
 
-	result[1][0] = sinf(rotation / (360 / (2 * PI)));
-	result[1][1] = cosf(rotation / (360 / (2 * PI)));
+	result[1][0] = sinf(rotation / (360.f / (2.f * PI_F)));
+	result[1][1] = cosf(rotation / (360.f / (2.f * PI_F)));
 	return result;
 }
 GPT::Math::Matrix GPT::Math::Matrix::set_rotation_3D(std::vector<float> rotation)
 {
 	Matrix result(3, 3);
 
-	result[0][0] =	cosf(rotation[1] / (360 / (2 * PI))) * cosf(rotation[2] / (360 / (2 * PI)));
-	result[0][1] = -sinf(rotation[2] / (360 / (2 * PI)));
-	result[0][2] =	sinf(rotation[1] / (360 / (2 * PI)));
+	result[0][0] =	cosf(rotation[1] / (360.f / (2.f * PI_F))) * cosf(rotation[2] / (360.f / (2.f * PI_F)));
+	result[0][1] = -sinf(rotation[2] / (360.f / (2.f * PI_F)));
+	result[0][2] =	sinf(rotation[1] / (360.f / (2.f * PI_F)));
 
-	result[1][0] =	sinf(rotation[2] / (360 / (2 * PI)));
-	result[1][1] =	cosf(rotation[0] / (360 / (2 * PI))) * 1 * cosf(rotation[2] / (360 / (2 * PI)));
-	result[1][2] = -sinf(rotation[0] / (360 / (2 * PI)));
+	result[1][0] =	sinf(rotation[2] / (360.f / (2.f * PI_F)));
+	result[1][1] =	cosf(rotation[0] / (360.f / (2.f * PI_F))) * 1 * cosf(rotation[2] / (360.f / (2.f * PI_F)));
+	result[1][2] = -sinf(rotation[0] / (360.f / (2.f * PI_F)));
 
-	result[2][0] = -sinf(rotation[1] / (360 / (2 * PI)));
-	result[2][1] =	sinf(rotation[0] / (360 / (2 * PI)));
-	result[2][2] =	cosf(rotation[0] / (360 / (2 * PI))) * cosf(rotation[1] / (360 / (2 * PI)));
+	result[2][0] = -sinf(rotation[1] / (360.f / (2.f * PI_F)));
+	result[2][1] =	sinf(rotation[0] / (360.f / (2.f * PI_F)));
+	result[2][2] =	cosf(rotation[0] / (360.f / (2.f * PI_F))) * cosf(rotation[1] / (360.f / (2.f * PI_F)));
 
 	return result;
 }
@@ -662,19 +662,19 @@ GPT::Math::Matrix GPT::Math::Matrix::set_TRS(std::vector<float> position, std::v
 {
 	Matrix result(4, 4);
 
-	result[0][0] =	cosf(rotation[1] / (360 / (2 * PI))) * cosf(rotation[2] / (360 / (2 * PI))) * scale[0];
-	result[0][1] = -sinf(rotation[2] / (360 / (2 * PI)));
-	result[0][2] =	sinf(rotation[1] / (360 / (2 * PI)));
+	result[0][0] =	cosf(rotation[1] / (360.f / (2.f * PI_F))) * cosf(rotation[2] / (360.f / (2.f * PI_F))) * scale[0];
+	result[0][1] = -sinf(rotation[2] / (360.f / (2.f * PI_F)));
+	result[0][2] =	sinf(rotation[1] / (360.f / (2.f * PI_F)));
 	result[0][3] =	position[0];
 
-	result[1][0] = sinf(rotation[2] / (360 / (2 * PI)));
-	result[1][1] = cosf(rotation[0] / (360 / (2 * PI))) * 1 * cosf(rotation[2] / (360 / (2 * PI))) * scale[1];
-	result[1][2] = -sinf(rotation[0] / (360 / (2 * PI)));
+	result[1][0] = sinf(rotation[2] / (360.f / (2.f * PI_F)));
+	result[1][1] = cosf(rotation[0] / (360.f / (2.f * PI_F))) * 1 * cosf(rotation[2] / (360.f / (2.f * PI_F))) * scale[1];
+	result[1][2] = -sinf(rotation[0] / (360.f / (2.f * PI_F)));
 	result[1][3] = position[1];
 
-	result[2][0] = -sinf(rotation[1] / (360 / (2 * PI)));
-	result[2][1] = sinf(rotation[0] / (360 / (2 * PI)));
-	result[2][2] = cosf(rotation[0] / (360 / (2 * PI))) * cosf(rotation[1] / (360 / (2 * PI))) * scale[2];
+	result[2][0] = -sinf(rotation[1] / (360.f / (2.f * PI_F)));
+	result[2][1] = sinf(rotation[0] / (360.f / (2.f * PI_F)));
+	result[2][2] = cosf(rotation[0] / (360.f / (2.f * PI_F))) * cosf(rotation[1] / (360.f / (2.f * PI_F))) * scale[2];
 	result[2][3] = position[2];
 
 	result[3][0] = 0;
@@ -712,6 +712,19 @@ void GPT::phy::Physics::Initialisation(uint8_t dimensions, bool shouldBeAffected
 	momentum.set_dimension(dimensions);
 	angle.set_dimension(dimensions == 2 ? 1 : dimensions);
 };
+
+GPT::phy::Physics GPT::phy::Physics::GetPhysics()
+{
+	Physics output;
+	output.pos = pos;
+	output.angle = angle;
+	output.gravityAcceleration = gravityAcceleration;
+	output.isAffectedByGravity = isAffectedByGravity;
+	output.verticalDimension = verticalDimension;
+	output.momentum = momentum;
+	output.size = size;
+	return output;
+}
 
 /*
 void GPT::phy::Physics::Update()
