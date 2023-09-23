@@ -5,4 +5,5 @@ class Resources {
 public:
 	Resources();
 	Texture		player;
+	Texture		background;
 };
