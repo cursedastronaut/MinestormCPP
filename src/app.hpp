@@ -16,4 +16,7 @@ public:
 	Resources res;
     void Update();
 	bool CheckCollisions(GPT::Math::Vector a, GPT::Math::Vector b, float aAngle, float bAngle, GPT::Math::Vector aSize, GPT::Math::Vector bSize);
+	void backgroundDraw(ImDrawList& dlA, Resources& res);
 };
+
+const GPT::Math::Vector2 SCREEN_SIZE = { 1280, 720 };

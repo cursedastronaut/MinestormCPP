@@ -17,6 +17,8 @@ void App::Update()
 	dl = ImGui::GetBackgroundDrawList();
 	io = &ImGui::GetIO();
 	
+	backgroundDraw(*dl, res);
+
 	GPT::Math::Vector newBullet =
 	players[0].Update(io);
 	players[0].Draw(*dl, res);
@@ -97,4 +99,15 @@ bool App::CheckCollisions(GPT::Math::Vector a, GPT::Math::Vector b, float aAngle
 #endif
 		return false;
 	}
+}
+
+void App::backgroundDraw(ImDrawList& dlA, Resources& res)
+{
+	float horizontalRepeat = SCREEN_SIZE.x / res.background.width;
+	float verticalRepeat = SCREEN_SIZE.y / res.background.height;
+	for (float x = 0; x < horizontalRepeat; ++x)
+		for (float y = 0; y < verticalRepeat; ++y)
+			dlA.AddImage(res.background.id, { x * res.background.width, y * res.background.height },
+							{ x * res.background.width + res.background.width, y * res.background.height + res.background.height }
+						);
 }
